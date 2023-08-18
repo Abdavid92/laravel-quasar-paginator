@@ -343,12 +343,23 @@ class DataTablePaginator implements Arrayable, Jsonable, JsonSerializable, Count
             $this->perPage = $request->input(self::PER_PAGE_KEY, $this->perPage);
             $this->descending = $request->boolean(self::DESCENDING_KEY, $descending);
             $this->columns = $request->input(self::COLUMNS_KEY);
+            $this->args = $request->except([
+                self::FILTER_KEY,
+                self::SORT_BY_KEY,
+                self::PER_PAGE_KEY,
+                self::DESCENDING_KEY,
+                self::COLUMNS_KEY,
+                '_token',
+                '_method',
+                'page'
+            ]);
 
             $properties[self::FILTER_KEY] = $this->filter;
             $properties[self::SORT_BY_KEY] = $this->sortBy;
             $properties[self::PER_PAGE_KEY] = $this->perPage;
             $properties[self::DESCENDING_KEY] = $this->descending;
             $properties[self::COLUMNS_KEY] = $this->columns;
+            $properties[self::ARGS_KEY] = $this->args;
         } else {
 
             $properties = $store->getArgs();
@@ -358,6 +369,7 @@ class DataTablePaginator implements Arrayable, Jsonable, JsonSerializable, Count
             $this->perPage = $properties[self::PER_PAGE_KEY] ?? $this->perPage;
             $this->descending = $properties[self::DESCENDING_KEY] ?? false;
             $this->columns = $properties[self::COLUMNS_KEY] ?? null;
+            $this->args = $properties[self::ARGS_KEY];
         }
 
         $store->setArgs($properties);
