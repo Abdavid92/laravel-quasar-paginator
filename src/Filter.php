@@ -1,6 +1,6 @@
 <?php
 
-namespace Abdavid92\LaravelQuasarTable;
+namespace Abdavid92\LaravelQuasarPaginator;
 
 use Closure;
 use Illuminate\Contracts\Database\Eloquent\Builder;

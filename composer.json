@@ -1,11 +1,16 @@
 {
-    "name": "abdavid92/laravel-quasar-table",
+    "name": "abdavid92/laravel-quasar-paginator",
     "description": "A Data table backend for Laravel and Quasar.",
     "type": "library",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Abdavid92\\LaravelQuasarTable\\": "src/"
+            "Abdavid92\\LaravelQuasarPaginator\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Abdavid92\\LaravelQuasarPaginator\\Tests\\": "tests/"
         }
     },
     "authors": [

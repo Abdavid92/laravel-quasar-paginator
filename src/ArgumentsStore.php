@@ -1,6 +1,6 @@
 <?php
 
-namespace Abdavid92\LaravelQuasarTable;
+namespace Abdavid92\LaravelQuasarPaginator;
 
 use Illuminate\Support\Facades\Session;
 

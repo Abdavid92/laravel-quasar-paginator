@@ -1,6 +1,6 @@
 <?php
 
-namespace Abdavid92\LaravelQuasarTable;
+namespace Abdavid92\LaravelQuasarPaginator;
 
 use Closure;
 use Countable;
@@ -15,6 +15,8 @@ use JsonSerializable;
 
 /**
  * @author Abel David.
+ *
+ * A paginator for Laravel and quasar tables.
  */
 class DataTablePaginator implements Arrayable, Jsonable, JsonSerializable, Countable, Iterator
 {
