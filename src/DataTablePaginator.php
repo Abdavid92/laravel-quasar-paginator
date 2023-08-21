@@ -49,6 +49,13 @@ class DataTablePaginator implements Arrayable, Jsonable, JsonSerializable, Count
     private ?string $filter;
 
     /**
+     * Custom filter.
+     *
+     * @var Closure|null
+     */
+    private ?Closure $customFilter;
+
+    /**
      * Query sort.
      *
      * @var string|null
@@ -188,6 +195,18 @@ class DataTablePaginator implements Arrayable, Jsonable, JsonSerializable, Count
     }
 
     /**
+     * Filter the final result.
+     *
+     * @param Closure $filter
+     * @return $this
+     */
+    public function filter(Closure $filter): self
+    {
+        $this->customSorter = $filter;
+        return $this;
+    }
+
+    /**
      * Get the instance as an array.
      *
      * @return array
@@ -196,9 +215,16 @@ class DataTablePaginator implements Arrayable, Jsonable, JsonSerializable, Count
     {
         $this->initializePaginator();
 
+        $pagination = $this->transformItems();
+
+        if ($this->customFilter) {
+
+            $pagination = $pagination->filter($this->customFilter);
+        }
+
         return [
             self::PAGINATOR_NAME_KEY => $this->paginatorName,
-            self::PAGINATION_KEY => $this->transformItems()->toArray(),
+            self::PAGINATION_KEY => $pagination->toArray(),
             self::FILTER_KEY => $this->filter,
             self::SORT_BY_KEY => $this->sortBy,
             self::PER_PAGE_KEY => $this->perPage,
