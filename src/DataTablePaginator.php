@@ -53,7 +53,7 @@ class DataTablePaginator implements Arrayable, Jsonable, JsonSerializable, Count
      *
      * @var Closure|null
      */
-    private ?Closure $customFilter;
+    private ?Closure $customFilter = null;
 
     /**
      * Query sort.
