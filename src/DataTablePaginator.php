@@ -202,7 +202,7 @@ class DataTablePaginator implements Arrayable, Jsonable, JsonSerializable, Count
      */
     public function filter(Closure $filter): self
     {
-        $this->customSorter = $filter;
+        $this->customFilter = $filter;
         return $this;
     }
 

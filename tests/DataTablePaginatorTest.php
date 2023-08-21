@@ -39,6 +39,9 @@ class DataTablePaginatorTest extends TestCase
         $paginator = (new DataTablePaginator(User::query()))
             ->customColumn('name_with_email', function (User $user) {
                 return $user->name.' ('.$user->email.')';
+            })
+            ->filter(function (User $user) {
+                return false;
             });
 
         $count = $paginator->count();
