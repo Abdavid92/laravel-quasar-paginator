@@ -215,16 +215,16 @@ class DataTablePaginator implements Arrayable, Jsonable, JsonSerializable, Count
     {
         $this->initializePaginator();
 
-        $pagination = $this->transformItems();
+        $pagination = $this->transformItems()->toArray();
 
         if ($this->customFilter) {
 
-            $pagination = $pagination->filter($this->customFilter);
+            $pagination['data'] = array_filter($pagination['data'], $this->customFilter);
         }
 
         return [
             self::PAGINATOR_NAME_KEY => $this->paginatorName,
-            self::PAGINATION_KEY => $pagination->toArray(),
+            self::PAGINATION_KEY => $pagination,
             self::FILTER_KEY => $this->filter,
             self::SORT_BY_KEY => $this->sortBy,
             self::PER_PAGE_KEY => $this->perPage,

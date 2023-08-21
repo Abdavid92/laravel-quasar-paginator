@@ -40,7 +40,7 @@ class DataTablePaginatorTest extends TestCase
             ->customColumn('name_with_email', function (User $user) {
                 return $user->name.' ('.$user->email.')';
             })
-            ->filter(function (User $user) {
+            ->filter(function (array $data) {
                 return false;
             });
 
