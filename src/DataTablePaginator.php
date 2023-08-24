@@ -211,7 +211,7 @@ class DataTablePaginator implements Arrayable, Jsonable, JsonSerializable, Count
 
         if ($this->customFilter) {
 
-            $pagination['data'] = array_filter($pagination['data'], $this->customFilter);
+            $pagination['data'] = array_values(array_filter($pagination['data'], $this->customFilter));
         }
 
         return [
